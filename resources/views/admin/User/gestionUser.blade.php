@@ -1,5 +1,3 @@
-
-
 <x-app-layout>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -148,7 +146,6 @@
             display: flex;
             justify-content: center;
         }
-        
     </style>
 
     <x-slot name="header">
@@ -226,54 +223,53 @@
                                             @endif
                                         </td>
                                         <td>{{ \Carbon\Carbon::parse($user->created_at)->format('Y/m/d') }}</td>
-                                        <td>{{$user->last_login_at}}</td>
+                                        <td>{{ $user->last_login_at }}</td>
                                         <td class="table-buttons">
                                             <div class="button-container">
                                                 <a href="{{ route('admin.showUser', ['id' => $user->id]) }}"
                                                     style="background-color: #20595D;background-color 0.3s;
                                                     "onmouseover="this.style.backgroundColor='#3b767c ';"
                                                     onmouseout="this.style.backgroundColor='#20595D';"
-                                                    class="button-style"> <i
-                                                        class="fas fa-eye"></i></a>
+                                                    class="button-style"> <i class="fas fa-eye"></i></a>
                                                 @can('update user')
-                                                <a
-                                                    href="{{ route('admin.editUser', $user->id) }}"style="background-color: #075719;transition: background-color 0.3s;
-                                                    "onmouseover="this.style.backgroundColor='#4CAF50';"
-                                                    onmouseout="this.style.backgroundColor='#075719';"
-                                                    class="button-style">
-                                                    <i class="fas fa-pencil-alt"></i></a>
-                                                @endcan
+                                                    <a href="{{ route('admin.editUser', $user->id) }}"style="background-color: #075719;transition: background-color 0.3s;
+                                                            "onmouseover="this.style.backgroundColor='#4CAF50';"
+                                                            onmouseout="this.style.backgroundColor='#075719';"
+                                                            class="button-style">
+                                                            <i class="fas fa-pencil-alt"></i></a>
+@endcan
                                                 @can('unblocker user')
-                                                    <form action="{{ route('admin.unblockUser', $user->id) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        <button type="submit" class="block-button"
-                                                            style="background-color: #007bff; background-color 0.3s;
-                                                            "onmouseover="this.style.backgroundColor='#0066ff ';"
-                                                            onmouseout="this.style.backgroundColor='#007bff';"
-                                                            class="button-style"> <i
-                                                                class="fas fa-ban"></i></button>
-                                                    </form>
-                                                @endcan
-                                                @can('delete user')
-                                                    <form action="{{ route('admin.deleteUser', $user->id) }}"
-                                                        method="POST" onsubmit="return confirmDelete()">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" style="background-color: #6C1E0B;transition: background-color 0.3s;
+    <form action="{{ route('admin.unblockUser', $user->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                <button type="submit" class="block-button"
+                                                                    style="background-color: #007bff; background-color 0.3s;
+                                                            "onmouseover="
+                                                        this.style.backgroundColor='#0066ff ' ;"
+                                                        onmouseout="this.style.backgroundColor='#007bff';"
+                                                        class="button-style"> <i class="fas fa-ban"></i></button>
+                                                        </form>
+                                                    @endcan
+                                                    @can('delete user')
+                                                        <form action="{{ route('admin.deleteUser', $user->id) }}"
+                                                            method="POST" onsubmit="return confirmDelete()">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit"
+                                                                style="background-color: #6C1E0B;transition: background-color 0.3s;
                                                         "onmouseover="this.style.backgroundColor='#8c3820';"
-                                                        onmouseout="this.style.backgroundColor='#6C1E0B';"
-                                                        class="button-style">
-                                                            <i class="fas fa-trash-alt"></i></button>
-                                                    </form>
-                                                @endcan
+                                                                onmouseout="this.style.backgroundColor='#6C1E0B';"
+                                                                class="button-style">
+                                                                <i class="fas fa-trash-alt"></i></button>
+                                                        </form>
+                                                    @endcan
 
-                                                <script>
-                                                    function confirmDelete() {
+                                                    <script>
+                                                        function confirmDelete() {
 
-                                                        return confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur?");
-                                                    }
-                                                </script>
+                                                            return confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur?");
+                                                        }
+                                                    </script>
                                             </div>
                                         </td>
                                     </tr>
@@ -291,20 +287,28 @@
                                             @endif
                                         </td>
                                         <td>{{ \Carbon\Carbon::parse($user->created_at)->format('Y/m/d') }}</td>
-                                        <td>{{$user->last_login_at}}</td>
+                                        <td>{{ $user->last_login_at }}</td>
                                         <td class="table-buttons">
                                             <div class="button-container">
                                                 <a href="{{ route('admin.showUser', ['id' => $user->id]) }}"
-                                                    style="background-color: #075719;">Afficher</a>
-                                                <a href="{{ route('admin.editUser', $user->id) }}"
-                                                    style="background-color: #20595D;"><i class="fas fa-pencil-alt"></a>
+                                                    style="background-color: #20595D;background-color 0.3s;
+                                                    "onmouseover="this.style.backgroundColor='#3b767c ';"
+                                                    onmouseout="this.style.backgroundColor='#20595D';"
+                                                    class="button-style"> <i class="fas fa-eye"></i></a>
+                                                <a href="{{ route('admin.editUser', $user->id) }}"style="background-color: #075719;transition: background-color 0.3s;
+                                                        "onmouseover="this.style.backgroundColor='#4CAF50';"
+                                                        onmouseout="this.style.backgroundColor='#075719';"
+                                                        class="button-style">
+                                                        <i class="fas fa-pencil-alt"></i></a>
                                                 <form action="{{ route('admin.validateUser', $user->id) }}"
                                                     method="POST">
                                                     @csrf
                                                     <button type="submit"
-                                                        style="background-color: #007bff; border: 1px solid #0066cc; cursor: pointer; transition: background-color 0.3s ease;"
-                                                        class="unblock-button">Valider</button>
-                                                </form>
+                                                        style="background-color: #007bff; border: 1px solid #0066cc; cursor: pointer; transition: background-color 0.3s ease;"onmouseover="
+                                                    this.style.backgroundColor='#1970c6' ;"
+                                                    onmouseout="this.style.backgroundColor='#007bff';"
+                                                    class="unblock-button">Valider</button>
+                                                    </form>
                                             </div>
                                         </td>
                                     </tr>
@@ -321,54 +325,53 @@
                                             @endif
                                         </td>
                                         <td>{{ \Carbon\Carbon::parse($user->created_at)->format('Y/m/d') }}</td>
-                                        <td>{{$user->last_login_at}}</td>
+                                        <td>{{ $user->last_login_at }}</td>
                                         <td class="table-buttons">
                                             <div class="button-container">
                                                 <a href="{{ route('admin.showUser', ['id' => $user->id]) }}"
                                                     style="background-color: #20595D;background-color 0.3s;
                                                     "onmouseover="this.style.backgroundColor='#3b767c ';"
                                                     onmouseout="this.style.backgroundColor='#20595D';"
-                                                    class="button-style"> <i
-                                                        class="fas fa-eye"></i></a>
+                                                    class="button-style"> <i class="fas fa-eye"></i></a>
                                                 @can('update user')
-                                                <a
-                                                    href="{{ route('admin.editUser', $user->id) }}"style="background-color: #075719;transition: background-color 0.3s;
-                                                    "onmouseover="this.style.backgroundColor='#4CAF50';"
-                                                    onmouseout="this.style.backgroundColor='#075719';"
-                                                    class="button-style">
-                                                    <i class="fas fa-pencil-alt"></i></a>
-                                                @endcan
+                                                    <a href="{{ route('admin.editUser', $user->id) }}"style="background-color: #075719;transition: background-color 0.3s;
+                                                            "onmouseover="this.style.backgroundColor='#4CAF50';"
+                                                            onmouseout="this.style.backgroundColor='#075719';"
+                                                            class="button-style">
+                                                            <i class="fas fa-pencil-alt"></i></a>
+@endcan
                                                 @can('blocker user')
-                                                    <form action="{{ route('admin.blockUser', $user->id) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        <button type="submit" class="block-button"
-                                                            style="background-color: #ff0000; background-color 0.3s;
-                                                            "onmouseover="this.style.backgroundColor='#cc0000 ';"
-                                                            onmouseout="this.style.backgroundColor='#ff0000';"
-                                                            class="button-style"> <i
-                                                                class="fas fa-ban"></i></button>
-                                                    </form>
-                                                @endcan
-                                                @can('delete user')
-                                                    <form action="{{ route('admin.deleteUser', $user->id) }}"
-                                                        method="POST" onsubmit="return confirmDelete()">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" style="background-color: #6C1E0B;transition: background-color 0.3s;
+    <form action="{{ route('admin.blockUser', $user->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                <button type="submit" class="block-button"
+                                                                    style="background-color: #ff0000; background-color 0.3s;
+                                                            "onmouseover="
+                                                        this.style.backgroundColor='#cc0000 ' ;"
+                                                        onmouseout="this.style.backgroundColor='#ff0000';"
+                                                        class="button-style"> <i class="fas fa-ban"></i></button>
+                                                        </form>
+                                                    @endcan
+                                                    @can('delete user')
+                                                        <form action="{{ route('admin.deleteUser', $user->id) }}"
+                                                            method="POST" onsubmit="return confirmDelete()">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit"
+                                                                style="background-color: #6C1E0B;transition: background-color 0.3s;
                                                         "onmouseover="this.style.backgroundColor='#8c3820';"
-                                                        onmouseout="this.style.backgroundColor='#6C1E0B';"
-                                                        class="button-style">
-                                                            <i class="fas fa-trash-alt"></i></button>
-                                                    </form>
-                                                @endcan
+                                                                onmouseout="this.style.backgroundColor='#6C1E0B';"
+                                                                class="button-style">
+                                                                <i class="fas fa-trash-alt"></i></button>
+                                                        </form>
+                                                    @endcan
 
-                                                <script>
-                                                    function confirmDelete() {
+                                                    <script>
+                                                        function confirmDelete() {
 
-                                                        return confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur?");
-                                                    }
-                                                </script>
+                                                            return confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur?");
+                                                        }
+                                                    </script>
                                             </div>
                                         </td>
                                     </tr>
