@@ -22,9 +22,9 @@ class TicketController extends Controller
         $user = Auth::user();
 
         if ($user->hasRole('Chef-Agence')) {
-            $tickets = Ticket::where('agence_id', $user->agence_id)->with('agence', 'type_ticket', 'documents')->paginate(2);
+            $tickets = Ticket::where('agence_id', $user->agence_id)->with('agence', 'type_ticket', 'documents')->paginate(10);
         } else {
-            $tickets = Ticket::with('documents')->paginate(2);
+            $tickets = Ticket::with('documents')->paginate(10);
         }
 
         return view('user.gestionTicket', compact('tickets'));

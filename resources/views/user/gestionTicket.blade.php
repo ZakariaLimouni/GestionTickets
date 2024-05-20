@@ -1,6 +1,7 @@
 <x-app-layout>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-black-800 dark:text-BLACK-200 leading-tight"
             style="display: inline-block; border-bottom: 3px solid #006622; padding-left: 8px;padding-right: 8px;">
@@ -107,37 +108,36 @@
                     }
 
                     .annuler-ticket {
-            background-color: #ff8080 !important;
+                        background-color: #ff8080 !important;
+                    }
+
+                
+                    .list-group-item {
+            background-color: #fff;
+            color: #000;
         }
-        .pagination {
-    background-color: white; /* Set the background color */
-    border: 1px solid white; /* Set the border color */
-    border-radius: 0.375rem; /* Optionally, set border radius */
-}
-
-/* Target the pagination links */
-.pagination a {
-    color: black; /* Set the color of the links */
-}
-
-/* Optional: Hover effect for pagination links */
-.pagination a:hover {
-    color: grey; /* Set the hover color */
-}
+        .list-group-item a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .list-group-item a:hover {
+            color: #f3f3f3;
+            text-decoration: underline;
+        }
                 </style>
 
-                <div class="container mx-auto px-4"style="margin-left: 20px">
+                <div class="container mx-auto px-4"style="margin-left: 120px">
 
                     <div class="search-inputs flex" style="margin-right: 50px">
 
                         <label for=""class="font-semibold text-sm py-1 px-2 rounded">N°_Ticket:</label>
                         <input type="text" id="idInput" onkeyup="filterTable()" placeholder="N° Ticket..."
-                            style="width: 200px;" class="border border-gray-300 rounded-md px-1 py-1 mr-1">
+                            style="width: 300px;" class="border border-gray-300 rounded-md px-1 py-1 mr-1">
 
                         <label for=""class="font-semibold text-sm py-1 px-2 rounded"
                             style="margin-left: 10px">Type:</label>
                         <select id="typeInput"
-                            style="width: 150px;"class="border border-gray-300 rounded-md px-1 py-1 mr-1"
+                            style="width: 250px;"class="border border-gray-300 rounded-md px-1 py-1 mr-1"
                             onchange="filterTable()">
                             <option value="">Tous(...)</option>
                             @php
@@ -150,7 +150,7 @@
 
 
                         <label for="" class="font-semibold text-sm py-1 px-2 rounded"
-                            style="margin-left: 10px">Num_Declaration:</label>
+                            style="margin-left: 0px">Num_Declaration:</label>
                         <input type="text" id="num_declarationInput" onkeyup="filterTable()"
                             placeholder="Num_Declaration..." style="width: 150px;"
                             class="border border-gray-300 rounded-md px-1 py-1 mr-1">
@@ -158,13 +158,13 @@
                         <label for="" class="font-semibold text-sm py-1 px-2 rounded"
                             style="margin-left: 10px">Client:</label>
                         <input type="text" id="clientInput" onkeyup="filterTable()" placeholder="Client..."
-                            style="width: 150px;" class="border border-gray-300 rounded-md px-1 py-1 mr-1">
+                            style="width: 250px;" class="border border-gray-300 rounded-md px-1 py-1 mr-1">
 
                     </div>
                     <div class="search-inputs flex" style="margin-right: 50px; margin-top: 10px;">
                         <div>
                             <label for=""class="font-semibold text-sm py-1 px-2 rounded"
-                                style="">Agence:</label>
+                                style="margin-left: 50px;">Agence:</label>
                             <select id="agenceInput"
                                 style="width: 200px;"class="border border-gray-300 rounded-md px-1 py-1 mr-1"
                                 onchange="filterTable()">
@@ -177,7 +177,7 @@
                                 @endforeach
                             </select>
                             <label for=""class="font-semibold text-sm py-1 px-2 rounded"
-                                style="margin-left: 10px">Status:</label>
+                                style="margin-left: 40px">Status:</label>
                             <select id="statusInput"
                                 style="width: 200px;"class="border border-gray-300 rounded-md px-1 py-1 mr-1"
                                 onchange="filterTable()">
@@ -191,25 +191,27 @@
                             </select>
                             <label for="" class="font-semibold text-sm py-1 px-2 rounded">Du:</label>
                             <input type="text" id="startDateInput" placeholder="Début..."
-                                class="border border-gray-300 rounded-md px-1 py-1 mr-1" style="width: 100px;"
+                                class="border border-gray-300 rounded-md px-1 py-1 mr-1" style="width: 150px;"
                                 data-input>
 
 
 
-                            <label for="" class="font-semibold text-sm py-1 px-2 rounded">Au:</label>
+                            <label for=""
+                                class="font-semibold text-sm py-1 px-2 rounded"style="margin-left: 10px">Au:</label>
                             <input type="text" id="endDateInput" placeholder="Fin..."
-                                class="border border-gray-300 rounded-md px-1 py-1 mr-1" style="width: 100px;"
+                                class="border border-gray-300 rounded-md px-1 py-1 mr-1" style="width: 150px;"
                                 data-input>
                         </div>
-                        <div style="margin-left:40px">
-                            <button onclick="location.reload()"
-                                class="bg-black-300 text-black-800 py-1 px-4 rounded-md mr-2 rounded"
-                                style="background-color:rgb(224, 197, 15); background-color 0.3s;"
-                                onmouseover="this.style.backgroundColor='rgb(190, 167, 15) ';"
-                                onmouseout="this.style.backgroundColor='rgb(224, 197, 15)';">
-                                Réinitialiser
-                            </button>
-                        </div>
+                    </div>
+                    <div style="margin-left:1100px;">
+                        <button onclick="location.reload()"
+                            class="bg-black-300 text-black-800 py-1 px-4 rounded-md mr-2 rounded"
+                            style="background-color:rgb(224, 197, 15);top:100px;background-color 0.3s;"
+                            onmouseover="this.style.backgroundColor='rgb(190, 167, 15) ';"
+                            onmouseout="this.style.backgroundColor='rgb(224, 197, 15)';">
+                            Réinitialiser
+                        </button>
+
                     </div><br>
                 </div>
                 <form action="{{ route('exportTickets') }}" method="GET" id="exportForm">
@@ -221,7 +223,8 @@
                     <input type="hidden" name="status" id="export_status">
                     <input type="hidden" name="startDate" id="export_startDate">
                     <input type="hidden" name="endDate" id="export_endDate">
-                    <button type="button" onclick="exportTickets()" style="color:white;background-color:green" class="bg-green-500 text-white py-2 px-4 rounded-md shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75">
+                    <button type="button" onclick="exportTickets()" style="color:white;background-color:green"
+                        class="bg-green-500 text-white py-2 px-4 rounded-md shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75">
                         Exporter
                     </button>
                 </form>
@@ -245,191 +248,231 @@
                     </thead>
                     <tbody>
                         @foreach ($tickets as $ticket)
-                        @if ($ticket->status === 'annuler')
-                            <tr class="{{ $ticket->status === 'annuler' ? 'annuler-ticket' : '' }}">
-                                <td>{{ $ticket->id }}</td>
-                                <td>{{ $ticket->type_ticket->libelle }}</td>
-                                <td>{{ $ticket->num_declaration }}</td>
-                                <td>{{ $ticket->client }}</td>
-                                <td>{{ $ticket->code_client }}</td>
-                                <td>{{ $ticket->agence->agence }}</td>
-                                <td>{{ $ticket->description }}</td>
-                                <td>{{ $ticket->resolution }}</td>
-                                @if ($ticket->status === 'en_instance')
-                                    <td> <strong>En_Cours</strong></td>
-                                @else
-                                    <td><strong>{{ $ticket->status }}</strong></td>
-                                @endif
-
-                                <td>
-                                    @php
-                                        $user = App\Models\User::find($ticket->assigned_to);
-                                    @endphp
-
-                                    @if ($user)
-                                        {{ $user->agence->agence . '/' . $user->name . ' ' . $user->Prenom }}
+                            @if ($ticket->status === 'annuler')
+                                <tr class="{{ $ticket->status === 'annuler' ? 'annuler-ticket' : '' }}">
+                                    <td>{{ $ticket->id }}</td>
+                                    <td>{{ $ticket->type_ticket->libelle }}</td>
+                                    <td>{{ $ticket->num_declaration }}</td>
+                                    <td>{{ $ticket->client }}</td>
+                                    <td>{{ $ticket->code_client }}</td>
+                                    <td>{{ $ticket->agence->agence }}</td>
+                                    <td>{{ $ticket->description }}</td>
+                                    <td>{{ $ticket->resolution }}</td>
+                                    @if ($ticket->status === 'en_instance')
+                                        <td> <strong>en_instance</strong></td>
                                     @else
-                                        No User Assigned
+                                        <td><strong>{{ $ticket->status }}</strong></td>
                                     @endif
-                                </td>
-                                <td>{{ $ticket->created_at }}</td>
-                                <td>Ce ticket a été annulé par :   <strong>{{ $ticket->annuler_creater }}</strong> </td>
-                            </tr>
-                            @else
-                            <tr>
-                                <td>{{ $ticket->id }}</td>
-                                <td>{{ $ticket->type_ticket->libelle }}</td>
-                                <td>{{ $ticket->num_declaration }}</td>
-                                <td>{{ $ticket->client }}</td>
-                                <td>{{ $ticket->code_client }}</td>
-                                <td>{{ $ticket->agence->agence }}</td>
-                                <td>{{ $ticket->description }}</td>
-                                <td>{{ $ticket->resolution }}</td>
-                                @if ($ticket->status === 'en_instance')
-                                    <td><strong>En_Cours</strong></td>
-                                @else
-                                    <td><strong>{{ $ticket->status }}</strong></td>
-                                @endif
 
-                                <td>
-                                    @php
-                                        $user = App\Models\User::find($ticket->assigned_to);
-                                    @endphp
+                                    <td>
+                                        @php
+                                            $user = App\Models\User::find($ticket->assigned_to);
+                                        @endphp
 
-                                    @if ($user)
-                                        {{ $user->agence->agence . '/' . $user->name . ' ' . $user->Prenom }}
-                                    @else
-                                        No User Assigned
-                                    @endif
-                                </td>
-                                <td>{{ $ticket->created_at }}</td>
-                                <td class="table-buttons">
-                                    <div class="button-container">
-                                        @if ($ticket->status === 'en_instance')
-                                        @can('show document')
-                                            @if ($ticket->documents->count() > 0)
-                                            
-                                                <a href="{{ Storage::url($ticket->documents->first()->document) }}"
-                                                    data-lightbox="document"
-                                                    style="background-color: #006bb3;color: white;background-color 0.3s;
-                            "onmouseover="this.style.backgroundColor='#005c99 ';"
-                                                    onmouseout="this.style.backgroundColor='#006bb3';"
-                                                    class="button-style">
-                                                    <i class="fa fa-paperclip"></i>
-                                                </a>
-                                            
-                                            
-                                            @else
-                                                <a href="#"
-                                                    style="background-color: transparent; color: transparent; pointer-events: none; width:28px"
-                                                    class="button-style">
-                                                    <i class="fa"></i>
-                                                </a>
-                                                
-                                            @endif
-                                            @endcan
-                                            @can('view ticket')
-                                                <a href="{{ route('user.showTicket', $ticket->id) }}"
-                                                    style="background-color: #20595D;background-color 0.3s;
-                                                        "onmouseover="this.style.backgroundColor='#3b767c ';"
-                                                    onmouseout="this.style.backgroundColor='#20595D';" class="button-style">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                            @endcan
-                                            @can('modifer ticket')
-                                                <a href="{{ route('user.editTicket', $ticket->id) }}"
-                                                    style="background-color: #b35900;transition: background-color 0.3s;
-                                                        "onmouseover="this.style.backgroundColor='#994d00';"
-                                                    onmouseout="this.style.backgroundColor='#b35900 ';"
-                                                    class="button-style">
-                                                    <i class="fas fa-pencil-alt"></i>
-                                                </a>
-                                            @endcan
-                                            @can('cloturer ticket')
-                                                <form action="{{ route('user.cloturerTicket', $ticket->id) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    <button type="submit" class="block-button"
-                                                        style="background-color: #00b33c; background-color 0.3s;
-                                                            "onmouseover="this.style.backgroundColor='#009933 ';"
-                                                        onmouseout="this.style.backgroundColor='#00b33c';"
-                                                        class="button-style"> <i class="fa fa-check"></i></button>
-                                                </form>
-                                            @endcan
-                                            @can('annuler ticket')
-                                            <button onclick="annulerTicket({{ $ticket->id }})"
-                                                style="background-color: #E20D0D; transition: background-color 0.3s;
-                                                "
-                                                onmouseover="this.style.backgroundColor='#cc0000 ';"
-                                                onmouseout="this.style.backgroundColor='#E20D0D';"
-                                                class="button-style">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                            @endcan
-                                            <script>
-                                                function annulerTicket(ticketId) {
-                                                    if (confirm('Êtes-vous sûr de vouloir annuler ce Ticket?')) {
-                                                        axios.post('/cancel-ticket', {
-                                                                ticketId: ticketId
-                                                            })
-                                                            .then(function(response) {
-                                                                window.location.reload();
-                                                            })
-                                                            .catch(function(error) {
-                                                                console.error('Error cancelling ticket:', error);
-                                                            });
-                                                    }
-                                                }
-                                            </script>
-                                        @elseif($ticket->status === 'Clôturer')
-                                        @can('show document')
-                                            @if ($ticket->documents->count() > 0)
-                                                
-                                                <a href="{{ Storage::url($ticket->documents->first()->document) }}"
-                                                    data-lightbox="document"
-                                                    style="background-color: #006bb3;color: white;background-color 0.3s;
-                        "onmouseover="this.style.backgroundColor='#005c99 ';"
-                                                    onmouseout="this.style.backgroundColor='#006bb3';"
-                                                    class="button-style">
-                                                    <i class="fa fa-paperclip"></i>
-                                                </a>
-                                                
-                                            @else
-                                                <a href="#"
-                                                    style="background-color: transparent; color: transparent; pointer-events: none; width:28px"
-                                                    class="button-style">
-                                                    <i class="fa"></i>
-                                                </a>
-                                            @endif
-                                            @endcan
-                                            @can('view ticket')
-                                                <a href="{{ route('user.showTicket', $ticket->id) }}"
-                                                    style="background-color: #20595D;background-color 0.3s;
-                                                        "onmouseover="this.style.backgroundColor='#3b767c ';"
-                                                    onmouseout="this.style.backgroundColor='#20595D';"
-                                                    class="button-style">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a href="#"
-                                                    style="background-color: transparent; color: transparent; pointer-events: none; width:27px"
-                                                    class="button-style">
-                                                    <i class="fa"></i>
-                                                </a>
-                                                <a href="#"
-                                                    style="background-color: transparent; color: transparent; pointer-events: none; width:27px"
-                                                    class="button-style">
-                                                    <i class="fa"></i>
-                                                </a>
-                                            @endcan
+                                        @if ($user)
+                                            {{ $user->agence->agence . '/' . $user->name . ' ' . $user->Prenom }}
+                                        @else
+                                            No User Assigned
                                         @endif
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                    <td>{{ $ticket->created_at }}</td>
+                                    <td>Ce ticket a été annulé par : <strong>{{ $ticket->annuler_creater }}</strong>
+                                    </td>
+                                </tr>
+                            @else
+                                <tr>
+                                    <td>{{ $ticket->id }}</td>
+                                    <td>{{ $ticket->type_ticket->libelle }}</td>
+                                    <td>{{ $ticket->num_declaration }}</td>
+                                    <td>{{ $ticket->client }}</td>
+                                    <td>{{ $ticket->code_client }}</td>
+                                    <td>{{ $ticket->agence->agence }}</td>
+                                    <td>{{ $ticket->description }}</td>
+                                    <td>{{ $ticket->resolution }}</td>
+                                    @if ($ticket->status === 'en_instance')
+                                        <td><strong>en_instance</strong></td>
+                                    @else
+                                        <td><strong>{{ $ticket->status }}</strong></td>
+                                    @endif
+
+                                    <td>
+                                        @php
+                                            $user = App\Models\User::find($ticket->assigned_to);
+                                        @endphp
+
+                                        @if ($user)
+                                            {{ $user->agence->agence . '/' . $user->name . ' ' . $user->Prenom }}
+                                        @else
+                                            No User Assigned
+                                        @endif
+                                    </td>
+                                    <td style="width: 100px">{{ $ticket->created_at }}</td>
+                                    <td class="table-buttons">
+                                        <div class="button-container">
+                                            @if ($ticket->status === 'en_instance')
+                                                @can('show document')
+                                                    @if ($ticket->documents->count() > 0)
+                                                    <a href="#documentsModal" data-toggle="modal"
+                                                    style="background-color: #006bb3; color: white; transition: background-color 0.3s;"
+                                                    onmouseover="this.style.backgroundColor='#005c99';"
+                                                    onmouseout="this.style.backgroundColor='#006bb3';"
+                                                    class="button-style">
+                                                    <i class="fa fa-paperclip"></i>
+                                                 </a>
+                                                 <div class="modal fade" id="documentsModal" tabindex="-1" role="dialog" aria-labelledby="documentsModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                       <div class="modal-content">
+                                                          <div class="modal-header">
+                                                             <h5 class="modal-title" id="documentsModalLabel">Documents</h5>
+                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                             </button>
+                                                          </div>
+                                                          <div class="modal-body">
+                                                             <ul class="list-group">
+                                                                @foreach($ticket->documents()->get() as $document)
+                                                                   <li class="list-group-item">
+                                                                      <a href="{{ Storage::url($document->document) }}" target="_blank">
+                                                                         {{ $document->publie_le ?? 'Document' }}
+                                                                      </a>
+                                                                   </li>
+                                                                @endforeach
+                                                             </ul>
+                                                          </div>
+                                                       </div>
+                                                    </div>
+                                                 </div>
+                                                    @else
+                                                        <a href="#"
+                                                            style="background-color: transparent; color: transparent; pointer-events: none; width:28px"
+                                                            class="button-style">
+                                                            <i class="fa"></i>
+                                                        </a>
+                                                    @endif
+                                                @endcan
+                                                @can('view ticket')
+                                                    <a href="{{ route('user.showTicket', $ticket->id) }}"
+                                                        style="background-color: #20595D;background-color 0.3s;
+                                                        "onmouseover="this.style.backgroundColor='#3b767c ';"
+                                                        onmouseout="this.style.backgroundColor='#20595D';"
+                                                        class="button-style">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                @endcan
+                                                @can('modifer ticket')
+                                                    <a href="{{ route('user.editTicket', $ticket->id) }}"
+                                                        style="background-color: #b35900;transition: background-color 0.3s;
+                                                        "onmouseover="this.style.backgroundColor='#994d00';"
+                                                        onmouseout="this.style.backgroundColor='#b35900 ';"
+                                                        class="button-style">
+                                                        <i class="fas fa-pencil-alt"></i>
+                                                    </a>
+                                                @endcan
+                                                @can('cloturer ticket')
+                                                    <form action="{{ route('user.cloturerTicket', $ticket->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        <button type="submit" class="block-button"
+                                                            style="background-color: #00b33c; background-color 0.3s;
+                                                            "onmouseover="this.style.backgroundColor='#009933 ';"
+                                                            onmouseout="this.style.backgroundColor='#00b33c';"
+                                                            class="button-style"> <i class="fa fa-check"></i></button>
+                                                    </form>
+                                                @endcan
+                                                @can('annuler ticket')
+                                                    <button onclick="annulerTicket({{ $ticket->id }})"
+                                                        style="background-color: #E20D0D; transition: background-color 0.3s;
+                                                "
+                                                        onmouseover="this.style.backgroundColor='#cc0000 ';"
+                                                        onmouseout="this.style.backgroundColor='#E20D0D';"
+                                                        class="button-style">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                @endcan
+                                                <script>
+                                                    function annulerTicket(ticketId) {
+                                                        if (confirm('Êtes-vous sûr de vouloir annuler ce Ticket?')) {
+                                                            axios.post('/cancel-ticket', {
+                                                                    ticketId: ticketId
+                                                                })
+                                                                .then(function(response) {
+                                                                    window.location.reload();
+                                                                })
+                                                                .catch(function(error) {
+                                                                    console.error('Error cancelling ticket:', error);
+                                                                });
+                                                        }
+                                                    }
+                                                </script>
+                                            @elseif($ticket->status === 'Clôturer')
+                                                @can('show document')
+                                                    @if ($ticket->documents->count() > 0)
+                                                    <a href="#documentsModal" data-toggle="modal"
+                                                    style="background-color: #006bb3; color: white; transition: background-color 0.3s;"
+                                                    onmouseover="this.style.backgroundColor='#005c99';"
+                                                    onmouseout="this.style.backgroundColor='#006bb3';"
+                                                    class="button-style">
+                                                    <i class="fa fa-paperclip"></i>
+                                                 </a>
+                                                 <div class="modal fade" id="documentsModal" tabindex="-1" role="dialog" aria-labelledby="documentsModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                       <div class="modal-content">
+                                                          <div class="modal-header">
+                                                             <h5 class="modal-title" id="documentsModalLabel">Documents</h5>
+                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                             </button>
+                                                          </div>
+                                                          <div class="modal-body">
+                                                             <ul class="list-group">
+                                                                @foreach($ticket->documents()->get() as $document)
+                                                                   <li class="list-group-item">
+                                                                      <a href="{{ Storage::url($document->document) }}" target="_blank">
+                                                                         {{ $document->publie_le ?? 'Document' }}
+                                                                      </a>
+                                                                   </li>
+                                                                @endforeach
+                                                             </ul>
+                                                          </div>
+                                                       </div>
+                                                    </div>
+                                                 </div>
+                                                    @else
+                                                        <a href="#"
+                                                            style="background-color: transparent; color: transparent; pointer-events: none; width:28px"
+                                                            class="button-style">
+                                                            <i class="fa"></i>
+                                                        </a>
+                                                    @endif
+                                                @endcan
+                                                @can('view ticket')
+                                                    <a href="{{ route('user.showTicket', $ticket->id) }}"
+                                                        style="background-color: #20595D;background-color 0.3s;
+                                                        "onmouseover="this.style.backgroundColor='#3b767c ';"
+                                                        onmouseout="this.style.backgroundColor='#20595D';"
+                                                        class="button-style">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                    <a href="#"
+                                                        style="background-color: transparent; color: transparent; pointer-events: none; width:27px"
+                                                        class="button-style">
+                                                        <i class="fa"></i>
+                                                    </a>
+                                                    <a href="#"
+                                                        style="background-color: transparent; color: transparent; pointer-events: none; width:27px"
+                                                        class="button-style">
+                                                        <i class="fa"></i>
+                                                    </a>
+                                                @endcan
+                                            @endif
+                                        </div>
+                                    </td>
+                                </tr>
                             @endif
                         @endforeach
                     </tbody>
                 </table>
-                <div class="pagination">
+                <div >
                     {{ $tickets->links() }}
                 </div>
             </div>
@@ -502,6 +545,7 @@
                 }
             }
         }
+
         function exportTickets() {
             document.getElementById('export_id').value = document.getElementById('idInput').value;
             document.getElementById('export_type').value = document.getElementById('typeInput').value;
@@ -520,4 +564,7 @@
     </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </x-app-layout>

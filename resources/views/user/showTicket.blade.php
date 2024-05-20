@@ -1,6 +1,7 @@
 <x-app-layout>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -158,46 +159,69 @@
                         </div>
                     </div>
                     <br>    
-                        @if (!empty($ticket->type_document_id) && !empty($ticket->document))
-                            <h2 class="font-semibold text-xl text-black-800 dark:text-BLACK-200 leading-tight"
-                                style="display: inline-block; border-bottom: 3px solid #006622; padding-left: 8px; padding-right: 8px;">
-                                {{ __('list des documents:') }}
-                            </h2>
-                            <br>
-                            <table >
-                                <thead>
-                                    <tr class="header-row">
-                                        <th style="text-align:center;">type</th>
-                                        <th style="text-align:center;">Publié Le</th>
-                                        <th style="text-align:center;">Par</th>
-                                        <th style="text-align:center;">document</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>{{ $ticket->type_document->libelle }}</td>
-                                        <td>{{ $ticket->publie_le }}</td>
-                                        <td>
-                                            {{$ticket->document_creator}}
-                                        </td>
+                    @if (!$ticket->documents->isEmpty())
+                    <h2 class="font-semibold text-xl text-black-800 dark:text-BLACK-200 leading-tight"
+                        style="display: inline-block; border-bottom: 3px solid #006622; padding-left: 8px; padding-right: 8px;">
+                        {{ __('list des documents:') }}
+                    </h2><br>
+                    <br>
+                    <table>
+                        <thead>
+                            <tr class="header-row">
+                                <th style="text-align:center;">type</th>
+                                <th style="text-align:center;">Publié Le</th>
+                                <th style="text-align:center;">Agence</th>
+                                <th style="text-align:center;">User</th>
+                                <th style="text-align:center;">document</th>
+                                <th style="text-align:center;">annuler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($ticket->documents()->get() as $document)
 
-                                        <td>
-                                            @if ($ticket->document)
-                                                <div class="lightbox-container">
-                                                    <a href="{{ Storage::url($ticket->document) }}"
-                                                        data-lightbox="document" class="button-style">
-                                                        <i class="fas fa-eye"
-                                                            style="font-size:20px;background-color: #20595D;color: white;border-radius: 3px;width:50px; height:40px;text-align:center;display: flex; justify-content: center; align-items: center;background-color 0.3s;
-                                                    "onmouseover="this.style.backgroundColor='#3b767c ';"
-                                                            onmouseout="this.style.backgroundColor='#20595D';"></i>
-                                                    </a>
-                                                </div>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        @endif
+                                <tr>
+                                    <td>{{ $document->type_document->libelle }}</td>
+                                    <td>{{ $document->publie_le }}</td>
+                                    <td>{{ explode('/', $document->document_creator)[0] }}</td>
+        <td>{{ explode('/', $document->document_creator)[1] }}</td>
+                                    <td>
+                                        @if ($document->document)
+                                            <div class="lightbox-container">
+                                                <a href="{{ Storage::url($document->document) }}"
+                                                    data-lightbox="document" class="button-style">
+                                                    <i class="fas fa-eye"
+                                                        style="font-size:20px;background-color: #20595D;color: white;border-radius: 3px;width:50px; height:40px;text-align:center;display: flex; justify-content: center; align-items: center;background-color 0.3s;
+                                                "onmouseover="this.style.backgroundColor='#3b767c ';"
+                                                        onmouseout="this.style.backgroundColor='#20595D';"></i>
+                                                </a>
+                                            </div>
+                                        @endif
+                                    </td>
+                                    <td class="table-buttons">
+                                        <div style="display: flex; align-items: center;">
+                                            <form action="{{ route('user.deleteDocument', $document->id) }}"
+                                                method="POST" onsubmit="return confirmDelete()">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="icon-delete">
+                                                    <i class="fas fa-trash-alt"
+                                                        style="font-size:20px;  background-color: #E20D0D; color: white; padding: 7px; border-radius: 3px; width:50px; height:40px; text-align:center; display: flex; justify-content: center; align-items: center;background-color 0.3s;
+                                                        "onmouseover="this.style.backgroundColor='#cc0000 ';"
+                                                        onmouseout="this.style.backgroundColor='#E20D0D';"></i>
+                                                </button>
+                                                <script>
+                                                    function confirmDelete() {
+                                                        return confirm("Êtes-vous sûr de vouloir supprimer cette document?");
+                                                    }
+                                                </script>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                @endif
                         <div class="flex items-center justify-end mt-1" >
                             <a class="underline text-m text-black-600 dark:text-black-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
                             style="background-color: rgb(240, 15, 15);width:120px;text-align:center;color:white;margin-left:50px;"  href="{{ route('user.gestionTicket') }}">

@@ -10,6 +10,7 @@
             <div class="bg-white dark:bg-white-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-white-900 dark:text-white-100">
                     <div class="container mx-auto px-4">
+                        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
                         <style>
                             body {
                                 font-family: Arial, sans-serif;

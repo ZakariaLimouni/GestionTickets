@@ -9,6 +9,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-white-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-white-900 dark:text-white-100">
+                    <head>
+                        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
                     <style>
                         .user-info-container {
                             display: flex;
@@ -29,7 +31,8 @@
                         .user-details > div {
                             margin-bottom: 10px;
                         }
-                    </style><b>
+                    </style>
+                    </head><b>
                     <h1 style="font-size: 15px; border-bottom: 2px solid #006622; margin-bottom: 1rem; text-align:center">
                         {{ __('Tous les Informations sur')   }} {{$user->name}} {{$user->Prenom}}</h1></b>
                     <div style="border:2px solid #006622 ;padding: 10px;">

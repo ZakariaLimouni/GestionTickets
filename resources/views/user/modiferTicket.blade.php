@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Storage;
 <x-app-layout>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
 
     <x-slot name="header">
@@ -216,9 +217,7 @@ use Illuminate\Support\Facades\Storage;
                                     class="block w-full px-4 py-2 mt-1 text-base text-black border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200 dark:text-black dark:border-gray-600 dark:bg-white dark:focus:border-gray-500 dark:focus:ring-gray-900">
                                     <option value="">Selectionner le type</option>
                                     @foreach ($TypeDocuments as $TypeDocument)
-                                        <option value="{{ $TypeDocument->id }}"
-                                            {{ $ticket->documents->isEmpty() ? '' : ($ticket->documents[0]->type_document_id == $TypeDocument->id ? 'selected' : '') }}>
-                                            {{ $TypeDocument->libelle }}</option>
+                                        <option value="{{ $TypeDocument->id }}">{{ $TypeDocument->libelle }}</option>
                                     @endforeach
                                 </select>
                                 <x-input-error :messages="$errors->get('type_document_id')" class="mt-1" />

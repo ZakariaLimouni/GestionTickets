@@ -1,4 +1,4 @@
-<?php 
+<?php
 use App\Models\Ville;
 use App\Models\Agence;
 $villes = Ville::all();        
@@ -6,236 +6,227 @@ $agences = Agence::all();
 ?>
 
 <style>
-*:before,
-*:after {
-    box-sizing: inherit;
-}
+    /* Base styles */
+    * {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
 
-h1 {
-    text-align: center;
-}
+    h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #333333;
+    }
 
-body {
-    background-image: url('{{ asset('img/background-img.jpg') }}');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #C8E6C9;
-}
+    body {
+        background-image: url('{{ asset('img/background-img.jpg') }}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f3f4f6;
+        margin: 0;
+    }
 
-.registration-wrapper {
-    background-color: #C8E6C9;
-    margin: 85px auto 0;
-    position: relative;
-    width: 992px;
-    display: flex;
-}
+    .registration-wrapper {
+        border-radius: 10px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        width: 992px;
+        margin: 85px auto 0;
+    }
 
-.registration-form {
-    margin-left: 25;
-    padding: 20px;
-    position: relative;
-    z-index: 1;
-    width: 570px;
-}
+    .form-field-group {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
 
-.registration-image {
-    
-    margin-top: 150px;
-}
+    .form-field-group div {
+        flex: 1;
+        margin-right: 10px;
+    }
 
-.registration-image img {
-    width: 265;
-    height: 265;
-}
+    label {
+        display: block;
+        margin-bottom: 10px;
+        color: #555555;
+    }
 
-.form-field-group {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-}
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    input[type="password"],
+    select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #cccccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
 
-.form-field-group div {
-    flex: 1;
-    margin-right: 10px;
-}
+    .photo-profile-container {
+        margin-top: 30px;
+        border: 1px solid #cccccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        padding: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 50%;
+        margin: auto;
+    }
 
-.col:last-child {
-    margin-right: 0;
-}
+    .photo-profile-container:hover {
+        background-color: #F8FEF7;
+    }
 
-label {
-    display: inline-block;
-    margin-bottom: 10px;
-}
+    .photo-profile-input {
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
 
-input[type="text"],
-input[type="tel"],
-input[type="email"],
-input[type="password"],
-select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 15px;
-}
+    .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-.text-sm {
-    font-size: 0.875rem;
-}
+    .primary {
+        background-color: #007bff;
+        color: #ffffff;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-right: 25px;
+    }
 
-.photo-profile-container {
-    position: relative;
-    overflow: hidden;
-    margin-top: 30px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    padding: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 50%;
-    margin: auto;
-   
-}
+    .primary:hover {
+        background-color: #0056b3;
+    }
 
-.photo-profile-container:hover {
-    background-color: #F8FEF7;
-}
-
-.photo-profile-input {
-    text-align: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-}
-
-.button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.primary {
-    background-color: #092911;
-    color: white;
-    padding: 7px 20px;
-    border: none;
-    font-size: 17px;
-    border-radius: 7px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.primary:hover {
-    background-color: #ADF2CE;
-    color: darkgreen;
-}
-
-.registered-link {
-    font-size: 16px;
-    color: #4a5568;
-    transition: color 0.3s ease;
-    margin-left: 25px;
-}
+    .registered-link {
+        font-size: 16px;
+        color: #4a5568;
+        transition: color 0.3s ease;
+    }
 </style>
 
-    <div class="registration-wrapper">
-        <!-- Image section -->
-        <div class="registration-image">
-            <img src="{{ asset('img/sdtm_sa_logo.jpg') }}" alt="Image" />
+<div class="registration-wrapper">
+    <!-- Form section -->
+    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+        @csrf
+        <h1>Formulaire d'inscription</h1>
+        <!-- Photo Profile -->
+        <div class="form-field-group">
+            <div class="photo-profile-container">
+                <div class="mt-1">
+                    <x-input-label for="photo_profile" :value="__('Photo Profile')" />
+                    <input id="photo_profile" type="file" name="photo_profile" accept="image/*" >
+                    <x-input-error :messages="$errors->get('photo_profile')" class="mt-2" />
+                </div>
+            </div>
         </div>
-        <!-- Form section -->
-        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" class="registration-form">
-            @csrf
-            <h1>Formulaire d'inscription</h1>
-            <!-- Photo Profile -->
-            <div class="mt-1">
-                <x-input-label for="photo_profile" :value="__('Photo Profile')" />
-                <input id="photo_profile" type="file" name="photo_profile" accept="image/*">
-                <x-input-error :messages="$errors->get('photo_profile')" class="mt-2" />
-            </div>
 
-            <!-- Name and Prenom -->
-            <div class="form-field-group">
-                <div class="mt-1">
-                    <x-input-label for="name" :value="__('Name')" />
-                    <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                </div>
-                <div class="mt-1">
-                    <x-input-label for="Prenom" :value="__('Prenom')" />
-                    <x-text-input id="Prenom" class="block mt-1 w-full" type="text" name="Prenom" :value="old('Prenom')" required autofocus autocomplete="Prenom" />
-                    <x-input-error :messages="$errors->get('Prenom')" class="mt-2" />
-                </div>
+        
+
+        <!-- Name and Prenom -->
+        <div class="form-field-group">
+            <div>
+                <label for="name">Name</label>
+                <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus>
+                @error('name')
+                    <div class="error-message">{{ $message }}</div>
+                @enderror
             </div>
-            <!-- Email and Telephone -->
-            <div class="form-field-group">
-                <div class="mt-1">
-                    <x-input-label for="email" :value="__('Email')" />
-                    <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                </div>
-                <div class="mt-1">
-                    <x-input-label for="Telephone" :value="__('Telephone')" />
-                    <x-text-input id="Telephone" class="block mt-1 w-full" type="text" name="Telephone" :value="old('Telephone')" required autofocus autocomplete="Telephone" />
-                    <x-input-error :messages="$errors->get('Telephone')" class="mt-2" />
-                </div>
+            <div>
+                <label for="Prenom">Prenom</label>
+                <input id="Prenom" type="text" name="Prenom" value="{{ old('Prenom') }}" required autofocus>
+                @error('Prenom')
+                    <div class="error-message">{{ $message }}</div>
+                @enderror
             </div>
-            <!-- Ville and Agence -->
-            <div class="form-field-group">
-                <div class="mt-1">
-                    <x-input-label for="ville_id" :value="__('Ville')" />
-                    <select id="ville_id" name="ville_id" class="block w-full px-4 py-2 mt-1 text-base text-black border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200 dark:text-black dark:border-gray-600 dark:bg-white dark:focus:border-gray-500 dark:focus:ring-gray-900">
-                        <option value="">Votre Ville</option>
-                        @foreach($villes as $ville)
-                        <option value="{{$ville->id}}">{{$ville->ville}}</option>
-                        @endforeach
-                    </select>
-                    <x-input-error :messages="$errors->get('ville_id')" class="mt-2" />
-                </div>
-                <div class="mt-1">
-                    <x-input-label for="agence_id" :value="__('Agence')" />
-                    <select id="agence_id" name="agence_id" class="block w-full px-4 py-2 mt-1 text-base text-black border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200 dark:text-black dark:border-gray-600 dark:bg-white dark:focus:border-gray-500 dark:focus:ring-gray-900">
-                        <option value="">Votre Agence</option>
-                        @foreach($agences as $agence)
-                        <option value="{{$agence->id}}">{{$agence->agence}}</option>
-                        @endforeach
-                    </select>
-                    <x-input-error :messages="$errors->get('agence_id')" class="mt-2" />
-                </div>
+        </div>
+
+        <!-- Email and Telephone -->
+        <div class="form-field-group">
+            <div>
+                <label for="email">Email</label>
+                <input id="email" type="email" name="email" value="{{ old('email') }}" required>
+                @error('email')
+                    <div class="error-message">{{ $message }}</div>
+                @enderror
             </div>
-            <!-- Password -->
-            <div class="form-field-group">
-                <div class="mt-1">
-                    <x-input-label for="password" :value="__('Le Mot de passe')" />
-                    <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                </div>
-                <!-- Confirm Password -->
-                <div class="mt-1">
-                    <x-input-label for="password_confirmation" :value="__('Confirmer Le Mot de passe')" />
-                    <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
-                    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-                </div>
+            <div>
+                <label for="Telephone">Telephone</label>
+                <input id="Telephone" type="tel" name="Telephone" value="{{ old('Telephone') }}" required>
+                @error('Telephone')
+                    <div class="error-message">{{ $message }}</div>
+                @enderror
             </div>
-            <!-- Register Button -->
-            <div class="form-field-group">
-                <div class="flex items-center justify-end mt-4">
-                    <div class="button-container">
-                        <x-primary-button class="primary">{{ __("S'inscrire") }}</x-primary-button>
-                        <a class="registered-link" href="{{ route('login') }}">{{ __('Déjà inscrit?') }}</a>
-                    </div>
-                </div>
+        </div>
+
+        <!-- Ville and Agence -->
+        <div class="form-field-group">
+            <div>
+                <label for="ville_id">Ville</label>
+                <select id="ville_id" name="ville_id" required>
+                    <option value="">Votre Ville</option>
+                    @foreach($villes as $ville)
+                        <option value="{{ $ville->id }}">{{ $ville->ville }}</option>
+                    @endforeach
+                </select>
+                @error('ville_id')
+                    <div class="error-message">{{ $message }}</div>
+                @enderror
             </div>
-        </form>
-        </form>
-    </div>
+            <div>
+                <label for="agence_id">Agence</label>
+                <select id="agence_id" name="agence_id" required>
+                    <option value="">Votre Agence</option>
+                    @foreach($agences as $agence)
+                        <option value="{{ $agence->id }}">{{ $agence->agence }}</option>
+                    @endforeach
+                </select>
+                @error('agence_id')
+                    <div class="error-message">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+
+        <!-- Password -->
+        <div class="form-field-group">
+            <div>
+                <label for="password">Le Mot de passe</label>
+                <input id="password" type="password" name="password" required autocomplete="new-password">
+                @error('password')
+                    <div class="error-message">{{ $message }}</div>
+                @enderror
+            </div>
+            <!-- Confirm Password -->
+            <div>
+                <label for="password_confirmation">Confirmer Le Mot de passe</label>
+                <input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password">
+                @error('password_confirmation')
+                    <div class="error-message">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+
+        <!-- Register Button -->
+        <div class="form-field-group">
+            <div class="button-container">
+                <button type="submit" class="primary">{{ __("S'inscrire") }}</button>
+                <a class="registered-link" href="{{ route('login') }}">{{ __('Déjà inscrit?') }}</a>
+            </div>
+        </div>
+    </form>
+</div>
