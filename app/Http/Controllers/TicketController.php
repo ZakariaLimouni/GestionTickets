@@ -60,7 +60,6 @@ class TicketController extends Controller
             'client' => 'required',
             'code_client' => 'required',
             'description' => 'required',
-            'resolution' => 'required',
             'assigned_to' => 'required',
         ]);
         Ticket::create([
@@ -154,7 +153,6 @@ class TicketController extends Controller
             'client' => 'required',
             'code_client' => 'required',
             'description' => 'required',
-            'resolution' => 'required',
             'assigned_to' => 'required',
         ]);
 

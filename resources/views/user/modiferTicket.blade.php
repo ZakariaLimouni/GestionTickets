@@ -170,7 +170,7 @@ use Illuminate\Support\Facades\Storage;
                                     <x-input-label for="resolution" :value="__('Commenter Service Modification')" />
                                     <textarea id="resolution" style="resize: none"
                                         class="block mt-1 w-full h-20 px-4 py-2 border border-gray-300 rounded-md shadow-sm resize-none focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200 dark:text-black dark:border-gray-600 dark:bg-white dark:focus:border-gray-500 dark:focus:ring-gray-900"
-                                        name="resolution" required autofocus autocomplete="resolution">{{ $ticket->resolution }}</textarea>
+                                        name="resolution"  autofocus autocomplete="resolution">{{ $ticket->resolution }}</textarea>
                                     <x-input-error :messages="$errors->get('resolution')" class="mt-2" />
                                 </div>
 
@@ -254,7 +254,7 @@ use Illuminate\Support\Facades\Storage;
                                             <td>
                                                 @if ($document->document)
                                                     <div class="lightbox-container">
-                                                        <a href="{{ Storage::url($document->document) }}"
+                                                        <a href="{{ Storage::url($document->document) }} "target="_blank"
                                                             data-lightbox="document" class="button-style">
                                                             <i class="fas fa-eye"
                                                                 style="font-size:20px;background-color: #20595D;color: white;border-radius: 3px;width:50px; height:40px;text-align:center;display: flex; justify-content: center; align-items: center;background-color 0.3s;

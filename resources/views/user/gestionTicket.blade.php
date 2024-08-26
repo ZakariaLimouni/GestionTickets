@@ -310,46 +310,46 @@
                                     <td class="table-buttons">
                                         <div class="button-container">
                                             @if ($ticket->status === 'en_instance')
-                                                @can('show document')
-                                                    @if ($ticket->documents->count() > 0)
-                                                    <a href="#documentsModal" data-toggle="modal"
-                                                    style="background-color: #006bb3; color: white; transition: background-color 0.3s;"
-                                                    onmouseover="this.style.backgroundColor='#005c99';"
-                                                    onmouseout="this.style.backgroundColor='#006bb3';"
-                                                    class="button-style">
-                                                    <i class="fa fa-paperclip"></i>
-                                                 </a>
-                                                 <div class="modal fade" id="documentsModal" tabindex="-1" role="dialog" aria-labelledby="documentsModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                       <div class="modal-content">
-                                                          <div class="modal-header">
-                                                             <h5 class="modal-title" id="documentsModalLabel">Documents</h5>
-                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            @can('show document')
+                                            @if ($ticket->documents->count() > 0)
+                                            <a href="#documentsModal-{{ $ticket->id }}" data-toggle="modal"
+                                                style="background-color: #006bb3; color: white; transition: background-color 0.3s;"
+                                                onmouseover="this.style.backgroundColor='#005c99';"
+                                                onmouseout="this.style.backgroundColor='#006bb3';"
+                                                class="button-style">
+                                                 <i class="fa fa-paperclip"></i>
+                                             </a>
+                                             <div class="modal fade" id="documentsModal-{{ $ticket->id }}" tabindex="-1" role="dialog" aria-labelledby="documentsModalLabel-{{ $ticket->id }}" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="documentsModalLabel-{{ $ticket->id }}">Documents</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
-                                                             </button>
-                                                          </div>
-                                                          <div class="modal-body">
-                                                             <ul class="list-group">
-                                                                @foreach($ticket->documents()->get() as $document)
-                                                                   <li class="list-group-item">
-                                                                      <a href="{{ Storage::url($document->document) }}" target="_blank">
-                                                                         {{ $document->publie_le ?? 'Document' }}
-                                                                      </a>
-                                                                   </li>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <ul class="list-group">
+                                                                @foreach($ticket->documents as $document)
+                                                                    <li class="list-group-item">
+                                                                        <a href="{{ Storage::url($document->document) }}" target="_blank">
+                                                                            {{ $document->publie_le ?? 'Document' }}
+                                                                        </a>
+                                                                    </li>
                                                                 @endforeach
-                                                             </ul>
-                                                          </div>
-                                                       </div>
-                                                    </div>
-                                                 </div>
-                                                    @else
-                                                        <a href="#"
-                                                            style="background-color: transparent; color: transparent; pointer-events: none; width:28px"
-                                                            class="button-style">
-                                                            <i class="fa"></i>
-                                                        </a>
-                                                    @endif
-                                                @endcan
+                                                     </ul>
+                                                  </div>
+                                               </div>
+                                            </div>
+                                         </div>
+                                            @else
+                                                <a href="#"
+                                                    style="background-color: transparent; color: transparent; pointer-events: none; width:28px"
+                                                    class="button-style">
+                                                    <i class="fa"></i>
+                                                </a>
+                                            @endif
+                                        @endcan
                                                 @can('view ticket')
                                                     <a href="{{ route('user.showTicket', $ticket->id) }}"
                                                         style="background-color: #20595D;background-color 0.3s;
@@ -407,31 +407,31 @@
                                             @elseif($ticket->status === 'Clôturer')
                                                 @can('show document')
                                                     @if ($ticket->documents->count() > 0)
-                                                    <a href="#documentsModal" data-toggle="modal"
-                                                    style="background-color: #006bb3; color: white; transition: background-color 0.3s;"
-                                                    onmouseover="this.style.backgroundColor='#005c99';"
-                                                    onmouseout="this.style.backgroundColor='#006bb3';"
-                                                    class="button-style">
-                                                    <i class="fa fa-paperclip"></i>
-                                                 </a>
-                                                 <div class="modal fade" id="documentsModal" tabindex="-1" role="dialog" aria-labelledby="documentsModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                       <div class="modal-content">
-                                                          <div class="modal-header">
-                                                             <h5 class="modal-title" id="documentsModalLabel">Documents</h5>
-                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                             </button>
-                                                          </div>
-                                                          <div class="modal-body">
-                                                             <ul class="list-group">
-                                                                @foreach($ticket->documents()->get() as $document)
-                                                                   <li class="list-group-item">
-                                                                      <a href="{{ Storage::url($document->document) }}" target="_blank">
-                                                                         {{ $document->publie_le ?? 'Document' }}
-                                                                      </a>
-                                                                   </li>
-                                                                @endforeach
+                                                    <a href="#documentsModal-{{ $ticket->id }}" data-toggle="modal"
+                                                        style="background-color: #006bb3; color: white; transition: background-color 0.3s;"
+                                                        onmouseover="this.style.backgroundColor='#005c99';"
+                                                        onmouseout="this.style.backgroundColor='#006bb3';"
+                                                        class="button-style">
+                                                         <i class="fa fa-paperclip"></i>
+                                                     </a>
+                                                     <div class="modal fade" id="documentsModal-{{ $ticket->id }}" tabindex="-1" role="dialog" aria-labelledby="documentsModalLabel-{{ $ticket->id }}" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="documentsModalLabel-{{ $ticket->id }}">Documents</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <ul class="list-group">
+                                                                        @foreach($ticket->documents as $document)
+                                                                            <li class="list-group-item">
+                                                                                <a href="{{ Storage::url($document->document) }}" target="_blank">
+                                                                                    {{ $document->publie_le ?? 'Document' }}
+                                                                                </a>
+                                                                            </li>
+                                                                        @endforeach
                                                              </ul>
                                                           </div>
                                                        </div>

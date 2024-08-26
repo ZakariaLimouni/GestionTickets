@@ -187,7 +187,7 @@
                                     <td>
                                         @if ($document->document)
                                             <div class="lightbox-container">
-                                                <a href="{{ Storage::url($document->document) }}"
+                                                <a href="{{ Storage::url($document->document) }}"target="_blank"
                                                     data-lightbox="document" class="button-style">
                                                     <i class="fas fa-eye"
                                                         style="font-size:20px;background-color: #20595D;color: white;border-radius: 3px;width:50px; height:40px;text-align:center;display: flex; justify-content: center; align-items: center;background-color 0.3s;
