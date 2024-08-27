@@ -104,8 +104,6 @@ $villes = Ville::paginate(5);
                 background-color: #ccc;
                 color: #666;
             }
-
-           
         </style>
     </head>
     <x-slot name="header">
@@ -148,7 +146,8 @@ $villes = Ville::paginate(5);
                                         <td>{{ $ville->status }}</td>
                                         <td class="table-buttons">
                                             <div style="display: flex; align-items: center;">
-                                                <i id="modifyButton_{{ $ville->id }}" class="fas fa-pencil-alt icon-modify"
+                                                <i id="modifyButton_{{ $ville->id }}"
+                                                    class="fas fa-pencil-alt icon-modify"
                                                     onclick="toggleEditForm('{{ $ville->id }}')"
                                                     style="font-size:20px; background-color: #075719; color: white; padding: 7px; border-radius: 3px; width:50px; height:40px; text-align:center;display: flex; justify-content: center; align-items: center; "></i>
                                                 <form action="{{ route('admin.deleteVille', $ville->id) }}"
@@ -283,45 +282,31 @@ $villes = Ville::paginate(5);
                     <script>
                         const toggleElement = document.querySelector('#createCityButton .toggle-element');
 
-                        document.getElementById('createCityButton').addEventListener('click', function() {
-                            const formRow = document.getElementById('createCityFormRow');
-                            var addButton = document.getElementById('createCityButton');
+                        document.getElementById('createCityButton').addEventListener('click', toggleCreateForm);
 
-                            if (formRow.style.display === 'none') {
-                                formRow.style.display = 'table-row';
-                                addButton.style.display = 'none'; // Hide both icon and text
-                            } else {
-                                formRow.style.display = 'none';
-                                addButton.style.display = 'inline-block'; // Display both icon and text
-                            }
-                        });
 
                         function toggleCreateForm() {
                             var formRow = document.getElementById('createCityFormRow');
                             var addButton = document.getElementById('createCityButton');
 
-                            if (formRow.style.display === 'none') {
-                                formRow.style.display = 'table-row';
-                                addButton.style.display = 'none'; // Hide the icon
-                            } else {
-                                formRow.style.display = 'none';
-                                addButton.style.display = 'inline-block'; // Display the icon
-                            }
+                            formRow.style.display = formRow.style.display === 'none' ? 'table-row' : 'none';
+                            addButton.style.display = addButton.style.display === 'none' ? 'block' : 'none';
                         }
+
 
                         function toggleEditForm(villeId) {
                             var editFormRow = document.getElementById('editCityFormRow_' + villeId);
                             var modifyButton = document.getElementById('modifyButton_' + villeId);
-                            var cancelButton = document.getElementById('cancelButton_' + villeId);
+                            // var cancelButton = document.getElementById('cancelButton_' + villeId);
 
                             if (editFormRow.style.display === 'none') {
                                 editFormRow.style.display = 'table-row';
                                 modifyButton.style.display = 'none';
-                                cancelButton.style.display = 'block';
+                                // cancelButton.style.display = 'block';
                             } else {
                                 editFormRow.style.display = 'none';
                                 modifyButton.style.display = 'block';
-                                cancelButton.style.display = 'none';
+                                // cancelButton.style.display = 'none';
                             }
                         }
 
